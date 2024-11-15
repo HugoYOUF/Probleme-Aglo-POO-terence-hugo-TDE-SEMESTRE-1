@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Probleme Hugo Youf Terence Roumilhac TD E", "Probleme Hugo Youf Terence Roumilhac TD E\Probleme Hugo Youf Terence Roumilhac TD E.csproj", "{93ABAFFC-FD4B-49E0-BC6D-484E0A94888E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{93ABAFFC-FD4B-49E0-BC6D-484E0A94888E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93ABAFFC-FD4B-49E0-BC6D-484E0A94888E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93ABAFFC-FD4B-49E0-BC6D-484E0A94888E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93ABAFFC-FD4B-49E0-BC6D-484E0A94888E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DC9E5D13-01A1-47A5-BA64-5A51B4CFF6B1}
+	EndGlobalSection
+EndGlobal
