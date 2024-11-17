@@ -11,19 +11,25 @@ namespace Probleme_Hugo_Youf_Terence_Roumilhac_TD_E
         //Déclaration des attributs de la classe D
         public char[] face;
         public char lettre_tiree;
+
+
         public Dé(Random r)
         {
-            // Initialiser le tableau face avec la taille de 6
+            // initioalisation du tableau face avec la taille de 6
             face = new char[6];
 
-            // Récupérer les lettres possibles
+            // Récupération des lettres possibles
             char[] lettres_possibles = Lettre.Obtenir_tableau_toutes_les_lettres_possibles();
 
-            // Remplir face avec des lettres aléatoires
+            // Remplissage du tableau face avec des lettres aléatoires
             for (int i = 0; i < 6; i++)
             {
                 face[i] = lettres_possibles[r.Next(lettres_possibles.Length)];
             }
+        }
+        public char Lettre_tiree
+        {
+            get { return lettre_tiree; }
         }
 
         //Fonction Lance qui permet de choisir au hasard une face du dé qui sera affichée sur le plateau
@@ -34,7 +40,7 @@ namespace Probleme_Hugo_Youf_Terence_Roumilhac_TD_E
             
         }
 
-        //Fonction toString qui affiche 
+        //Fonction toString qui affiche le dé et ses toutes possibles
         public string toString()
         {
             string faces = " ";
@@ -55,11 +61,7 @@ namespace Probleme_Hugo_Youf_Terence_Roumilhac_TD_E
         //Dé de = new Dé( r);
         //Random random = new Random();
         //de.Lance(random);
-        //  for(int i = 1; i <= de.face.Length; i++)
-        //{
-        //Console.WriteLine("face numéro " + i + " : " + de.face[i]);
-        //}
-
+        //Console.WriteLine(de.toString());
         //}
     }
 }
