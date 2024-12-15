@@ -1,67 +1,99 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using System.IO;
 
 public class Dictionnaire
 {
-    private SortedSet<string> mots;
-    public string Langue { get; private set; }
+private string Langue;
+private List<string> mots;
+public Dictionniare(string fichier, string langue) 
+{
+    this.Langue = langue;
+    mots = new List<string>();
 
-    public Dictionnaire(string Fichier, string langue)
+    if(File.Exists(fichier))
     {
-        this.Langue = langue;
-        mots = new SortedSet<string>(File.ReadAllLines(Fichier));
+        Console.WriteLine("Ficher : " + fichier );
+     
     }
 
-    public string toString()
+    else
     {
-        //nombre de mots par longueur 
-        var motLongueur = mots.GroupBy(mot => mot.Length).OrderBy(g=>g.Key).ToDictionary(g=>g.Key, g=>g.Count());
-
-        //nombre de mots qui commencent par chaque lettre de l'alphabet
-        var motLettre = mots.GroupBy(mot => mot[0].ToString().ToUpper()).OrderBy(g=>g.Key).ToDictionary(g=>g.Key, g=>g.Count());
-
-        var strB = new StringBuilder();
-
-        strB.AppendLine($"Langue : {Langue}.");
-        strB.AppendLine("Mots par longueur :");
-        foreach (var l in motLongueur)
-        {
-            strB.AppendLine($"Longueur {l.Key} = {l.Value} mots.");
-        }
-
-        strB.AppendLine("Mots par première lettre :");
-        foreach(var p in motLettre)
-        {
-            strB.AppendLine($" {p.Key} = {p.Value}");
-        }
-        return strB.ToString();
+        Console.WriteLine("Ficher : " + fichier + " introuvable");
+        return;
     }
 
-    public bool RDR(string mot)
+    string lecture =File.ReadAllText(fichier);
+
+    string[] separemot = lecture.Split(new[] { ' ', '\n', '\r', '\t' });
+    //Fonctionne aussi sans \n, \r, \t
+
+    foreach(var mot in separemot) 
     {
-        return RechDichoRecursif(mot, mots.ToList(), 0, mots.Count-1);
+        if(!string.IsNullOrEmpty(mot))
+        {
+            mots.Add(mot);
+        }
+    }
+    mots.Sort();
+}
+
+public string ToString()
+{
+    Dictionary<int,int> motsLongueur = mots.GroupBy(m => m.Length).ToDictionary(grp=>grp.Key, grp=>grp.Count());
+    Dictionary<char,int> motsPremierelettre = mots.GroupBy(m => m[0]).ToDictionary(grp => grp.Key, grp => grp.Count());
+    //Dictionary<Key,Value> => Key : clé qui permet le tri, Value : la valeur de chaque tri
+    string sol;
+    sol = ("Langue : "+Langue+" \nNombre de mots par longueur: \n");
+
+    foreach (KeyValuePair < int,int> i in motsLongueur ) 
+    {
+        sol += ("Mots à " +i.Key+" lettres : "+i.Value+" \n");
+    }   
+
+    sol += ("\nNombre de mots qui commencent par la lettre :\n");
+
+    foreach(KeyValuePair<char,int> j in motsPremierelettre )
+    {
+        sol+=j.Key+" : "+j.Value +"\n";
     }
 
-    public bool RechDichoRecursif(string mot, List<string> liste,int debut,int fin)
+    return sol ;
+
+}
+
+public bool RechDichoRecursif(string mot, int debut =0, int fin=-1 )
+{
+    if(fin==-1)
     {
-        if(fin < debut)
-        {
-            return false ;
-        }
-
-        int milieu = ((fin + debut)/2) ;
-        int comparer = string.Compare(mot, liste[milieu], StringComparison.OrdinalIgnoreCase) ;
-
-        if(comparer == 0)
-        {
-            return true ;   
-        }
-
-        else if(comparer <0)
-        {
-            return RechDichoRecursif(mot, liste, debut, milieu-1) ;
-        }
-
-        return RechDichoRecursif(mot, liste, milieu-1, fin) ;   
+        fin = mots.Count-1;
     }
+
+    if(debut>fin)
+    {
+        return false;
+    }
+
+    string motMinuscule = mot.ToLower();
+    string motMilieuMinuscule = mots[(debut + fin) / 2].ToLower();
+    //Fonctionne aussi sans les ToLower()
+
+    int milieu = (debut+fin)/2;
+    int compare = string.Compare(motMilieuMinuscule, motMinuscule);
+
+    if(compare==0)
+    {
+        return true;
+    }
+
+    if(compare<0)
+    {
+        return RechDichoRecursif(mot, milieu + 1, fin);
+    }
+
+    return RechDichoRecursif(mot, debut, milieu -1);
+}
 }
