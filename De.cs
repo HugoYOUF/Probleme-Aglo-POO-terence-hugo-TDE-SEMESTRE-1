@@ -30,6 +30,7 @@ namespace Probleme_Hugo_Youf_Terence_Roumilhac_TD_E
         public char Lettre_tiree
         {
             get { return lettre_tiree; }
+            set { lettre_tiree = value;}
         }
 
         //Fonction Lance qui permet de choisir au hasard une face du dé qui sera affichée sur le plateau

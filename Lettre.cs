@@ -10,12 +10,14 @@ namespace Probleme_Hugo_Youf_Terence_Roumilhac_TD_E
 {
     internal class Lettre
     {
+
+        //fréquence de la lettre = poids = probabilité qu'elle apparaisse sur chaque face
         public char symbole;
         public int score_lettre;
         public int frequence_lettre;
         public char[] tableau_lettres_frequence_score;
         
-
+        //constructeur naturel de la classe Lettre qui va nous permettre de créer un tableau de Lettre avec chaque symbole, poids, et son score
         public Lettre(char symbole, int score_lettre, int frequence_lettre)
         {
             this.symbole = symbole;
@@ -23,6 +25,8 @@ namespace Probleme_Hugo_Youf_Terence_Roumilhac_TD_E
             this.frequence_lettre = frequence_lettre;
         }
 
+
+        //on créer les propriétés des lettres qu'on pourrait potentiellement utiliser plus tard
         public char Symbole
         {
             get { return symbole; }
@@ -43,6 +47,7 @@ namespace Probleme_Hugo_Youf_Terence_Roumilhac_TD_E
             }
         }
 
+        //On créer le tableau de lettre avec chaque lettre, son poids, et son score
         public static Lettre[] Tableau_de_lettres = new Lettre[]
         {
             new Lettre('A',1,9),
@@ -74,7 +79,8 @@ namespace Probleme_Hugo_Youf_Terence_Roumilhac_TD_E
 
         public static char[] Obtenir_tableau_toutes_les_lettres_possibles()
         {
-            int taille = 0; 
+            //on trouve la taille du tableau de lettres, on pourrait simplement compter et additionner chaque poids de chaque lettre 
+            int taille = 0;
             for (int i = 0; i < Tableau_de_lettres.Length; i++)
             {
                 taille+= Tableau_de_lettres[i].frequence_lettre;

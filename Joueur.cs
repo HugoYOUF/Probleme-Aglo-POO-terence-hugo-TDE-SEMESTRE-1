@@ -13,10 +13,11 @@ namespace Probleme_Hugo_Youf_Terence_Roumilhac_TD_E
 
 
         //constructeur naturel de la classe Joueur
-        public Joueur(string nom, List<string> mots_trouves)
+        public Joueur(string nom)
         {
             this.nom = nom;
-            this.mots_trouves = mots_trouves;
+            score = 0;
+            mots_trouves = new List<string>();
 
         }
 
@@ -53,6 +54,7 @@ namespace Probleme_Hugo_Youf_Terence_Roumilhac_TD_E
         //fonction qui ajoute le mot trouvé à la liste des mots trouvés par le joueur
         public void Add_mot(string mot)
         {
+            mot = mot.ToUpper();
             if (Contain(mot) == false)
             {
                 mots_trouves.Add(mot);
@@ -64,19 +66,57 @@ namespace Probleme_Hugo_Youf_Terence_Roumilhac_TD_E
         public string toString()
         {
             string mots = " ";
-            for (int i = 0; i < mots_trouves.Count; i++)
+            if (mots_trouves.Count == 0)
             {
-                mots += mots_trouves + ", ";
+                mots = "Aucun mot trouvé";
             }
-            return ("Nom : " + this.nom + "\n" + "Score : " + this.score + "\n" + "Mots trouvés : " + mots);
+            else
+            {
+                foreach (string element in mots_trouves)
+                {
+                    mots += element + "   ";
+                }
+            }
+            return ("Nom : " + this.nom + "\n" + "Score : " + score + "\n" + "Mots trouvés : " + mots);
         }
 
+        public int ObtenirScore()
+        {
+            foreach(string element in mots_trouves)
+            {
+                foreach(char c in element)
+                {
+                    for (int i = 0; i < 25; i++) {
+                        if (c == Lettre.Tableau_de_lettres[i].symbole)
+                        {
+                            score += Lettre.Tableau_de_lettres[i].score_lettre;
+                        }
+                    }
+                }
+            }
+            return score;
+        }
 
+        
         //main temporaire pour voir la classe marche bien
-        // public static void Main(string[] args)
-        // {
-        //Joueur Joueur1 = new Joueur("Paul",);
+        /*
+        public static void Main(string[] args)
+        {
+            Joueur Joueur1 = new Joueur("Paul");
+            Joueur Joueur2 = new Joueur("Alice");
+            Joueur[] joueurs = {Joueur1, Joueur2}; 
+            string mot = "voiture";
+            string mot2 = "caravane";
+            Joueur1.Add_mot(mot);
+            Joueur1.Add_mot(mot2);
+            for(int i = 0; i< joueurs.Length; i++)
+            {
+                joueurs[i].score = joueurs[i].ObtenirScore();
+                Console.WriteLine(joueurs[i].toString());
+            }
 
-        //}
+        }
+        */
+        
     }
 }
