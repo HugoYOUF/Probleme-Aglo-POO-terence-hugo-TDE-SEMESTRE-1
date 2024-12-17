@@ -16,15 +16,8 @@ namespace probleme_main
             this.Langue = langue;
             mots = new List<string>();
 
-            if (File.Exists(fichier))
+            if (!File.Exists(fichier))
             {
-                Console.WriteLine("Ficher : " + fichier);
-
-            }
-
-            else
-            {
-                Console.WriteLine("Ficher : " + fichier + " introuvable");
                 return;
             }
 
