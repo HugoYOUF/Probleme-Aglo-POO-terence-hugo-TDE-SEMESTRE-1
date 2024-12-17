@@ -1,8 +1,7 @@
-﻿using Probleme_Hugo_Youf_Terence_Roumilhac_TD_E;
-using System;
+﻿using System;
 using System.Reflection.Metadata;
 
-namespace Probleme_Hugo_Youf_Terence_Roumilhac_TD_E
+namespace probleme_main
 {
     internal class Joueur
     {
