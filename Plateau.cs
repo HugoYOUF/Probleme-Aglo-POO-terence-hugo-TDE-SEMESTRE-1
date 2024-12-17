@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Probleme_Hugo_Youf_Terence_Roumilhac_TD_E
+namespace probleme_main
 {
     internal class Plateau
     {
